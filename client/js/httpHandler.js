@@ -5,6 +5,30 @@
   //
   // TODO: build the swim command fetcher here
   //
+  const swimFetcher = () => {
+    $.ajax({
+      type: 'GET',
+      url: serverUrl,
+      success: (data) => {
+        SwimTeam.move(data);
+      }
+    });  
+    // $.get(serverUrl, (data) => {
+    //   SwimTeam.move(data);
+    //   console.log(data);
+    // });  
+  }
+
+  
+  const backGroundFetcher = () => {
+    $.ajax({
+      type: 'GET',
+      url: serverUrl + '/background.jpg',
+      success: (data) => {
+        console.log('we got it', data);
+      }
+    }); 
+  }
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -17,7 +41,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
@@ -45,5 +69,9 @@
 
     ajaxFileUplaod(file);
   });
+
+  // backGroundFetcher();
+swimFetcher();
+
 
 })();
