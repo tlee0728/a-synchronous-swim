@@ -13,22 +13,19 @@
         SwimTeam.move(data);
       }
     });  
-    // $.get(serverUrl, (data) => {
-    //   SwimTeam.move(data);
-    //   console.log(data);
-    // });  
   }
 
   
-  const backGroundFetcher = () => {
-    $.ajax({
-      type: 'GET',
-      url: serverUrl + '/background.jpg',
-      success: (data) => {
-        console.log('we got it', data);
-      }
-    }); 
-  }
+
+  // const backGroundFetcher = () => {
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: serverUrl + '/background.jpg',
+  //     success: (data) => {
+  //       console.log('we got it', data);
+  //     }
+  //   }); 
+  // }
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -40,14 +37,16 @@
     formData.append('file', file);
     $.ajax({
       type: 'POST',
-      data: formData,
-      url: serverUrl,
+      data: file,
+      url: serverUrl + '/background.jpg',
       cache: false,
       contentType: false,
       processData: false,
       success: () => {
         // reload the page
+        console.log('successful bg post');
         window.location = window.location.href;
+        
       }
     });
   };
@@ -70,8 +69,9 @@
     ajaxFileUplaod(file);
   });
 
-  // backGroundFetcher();
-swimFetcher();
+setInterval(swimFetcher,4000);
+
 
 
 })();
+
